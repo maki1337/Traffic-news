@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Traffic information</title>
+</head>
+
+<body class="text-white">
+  <!-- START HERE -->
+  <div class="container text-center settings">
+    <h3 class="mt-5">Traffic information in Slovenia</h3>
+    <img src="img/traffic.png" alt="">
+    <div class="row" id="dashboard">
+      <div class="col-6 mx-auto">
+        <form class="mb-5">
+          <div class="form-group">
+            <label for="rate">Speed</label>
+            <div id="rate-value" class="badge badge-primary float-right">1</div>
+            <input type="range" id="rate" class="custom-range" min="0.5" max="2" value="1" step="0.1">
+          </div>
+          <div class="form-group">
+            <select id="voice-select" class="form-control form-control-lg"></select>
+          </div>
+          <button class="btn btn-primary btn-lg btn-block">Listen to traffic information</button>
+          <div class="row mt-3 mb-3">
+            <div class="col-lg-6 col-6">
+              <button id="pauseBtn" class="btn btn-light btn-lg btn-block"><i class="fas fa-pause mr-3"></i>Pause</button>
+            </div>
+            <div class="col-lg-6 col-6">
+              <button id="resumeBtn" class="btn btn-light btn-lg btn-block"><i class="fas fa-play mr-3"></i>Resume</button>
+            </div>
+          </div>
+        </form>
+
+        <p class="text-secondary"> Note: All the data about traffic is collected from <a href="https://opendata.si/"
+            target="_blank">www.opendata.si</a></p>
+
+      </div>
+    </div>
+    <div class="row mt-3">
+      <table class="table table-dark d-none text-center" id="trafficTable">
+        <thead>
+          <tr>
+            <th scope="col">Number</th>
+            <th scope="col">Type</th>
+            <th scope="col">Description</th>
+          </tr>
+        </thead>
+        <tbody id="myTable">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    // Get the current year for the copyright
+    $('#year').text(new Date().getFullYear());
+  </script>
+</body>
+
+</html>
