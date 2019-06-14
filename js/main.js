@@ -143,7 +143,7 @@ textForm.addEventListener('submit', e => {
 
 function fetchTrafficData() {
     console.log("Fetching traffic inforamtion");
-    fetch('https://opendata.si/promet/events/?lang=en')
+    fetch('https://opendata.si/promet/events/')
         .then(function (response) {
             return response.json();
         })
@@ -183,6 +183,7 @@ function displayInformation(output) {
         tr.appendChild(td3);
 
         table.appendChild(tr);
+
         if (key == output.length - 1) {
             colorData(0);
             speak(output, 0);
