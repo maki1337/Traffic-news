@@ -143,7 +143,7 @@ textForm.addEventListener('submit', e => {
 
 function fetchTrafficData() {
     console.log("Fetching traffic inforamtion");
-    fetch('https://opendata.si/promet/events/?lang=en')
+    fetch('https://opendata.si/promet/events/')
         .then(function (response) {
             return response.json();
         })
