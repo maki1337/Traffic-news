@@ -16,12 +16,6 @@ const pauseBtn = document.querySelector("#pauseBtn");
 const resumeBtn = document.querySelector("#resumeBtn");
 const stopBtn = document.querySelector("#stopBtn");
 
-// Checking stuff
-console.log("Speaker que: " + synth.pending);
-console.log("Speaker paused: " + synth.paused);
-console.log("Speaker speaking: " + synth.speaking);
-
-
 // Variables
 var output = [];
 var amIPaused;
@@ -102,6 +96,7 @@ const speak = (output, index) => {
             body.style.background = '#141414';
             if (index < output.length) {
                 index = index + 1;
+                colorData(index);
                 speak(output, index);
             }
 
@@ -129,7 +124,9 @@ const speak = (output, index) => {
 
         // Speak
         synth.speak(speakText);
-
+        console.log("Speaker que: " + synth.pending);
+        console.log("Speaker paused: " + synth.paused);
+        console.log("Speaker speaking: " + synth.speaking);
 
 
     }
@@ -173,20 +170,39 @@ function displayInformation(output) {
         var td = document.createElement("td");
         var td1 = document.createElement("td");
         var td2 = document.createElement("td");
+        var td3 = document.createElement("td");
 
         td.innerHTML = key + 1;
         td1.innerHTML = news.Title;
         td2.innerHTML = news.Description;
+        td3.innerHTML = news.IsRoadClosed;
 
         tr.appendChild(td);
         tr.appendChild(td1);
         tr.appendChild(td2);
+        tr.appendChild(td3);
 
         table.appendChild(tr);
         if (key == output.length - 1) {
+            colorData(0);
             speak(output, 0);
         }
     });
+}
+
+function colorData(index) {
+
+    if (index == 0) {
+        var tableBody = document.getElementById("myTable");
+        var row = tableBody.rows[index];
+        row.classList = "bg-danger";
+    } else {
+        var tableBody = document.getElementById("myTable");
+        var row = tableBody.rows[index];
+        var row1 = tableBody.rows[index - 1];
+        row.classList = "bg-danger";
+        row1.classList = "bg-dark";
+    }
 }
 
 
