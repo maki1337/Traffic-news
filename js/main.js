@@ -67,6 +67,7 @@ if (isChrome) {
 
 // Speak
 const speak = (output, index) => {
+    console.log("output: ", output);
     speakerState = "speaking";
     console.log("Speaker que: " + synth.pending);
     console.log("Speaker paused: " + synth.paused);
