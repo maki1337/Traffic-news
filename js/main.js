@@ -19,6 +19,7 @@ const stopBtn = document.querySelector("#stopBtn");
 // Variables
 var output = [];
 var amIPaused;
+var running = false;
 var speakerState = "initialized";
 
 //Browser identifier
@@ -49,8 +50,6 @@ const getVoices = () => {
     });
 };
 
-
-//Line 35, 36 causes voice list duplication
 getVoices();
 if (synth.onvoiceschanged !== undefined) {
     synth.onvoiceschanged = getVoices;
@@ -136,14 +135,21 @@ const speak = (output, index) => {
 
 // Text form submit
 textForm.addEventListener('submit', e => {
+    console.log("running: ", running);
+    console.log("get traffic");
+    if (!running) {
+        running = true;
+        fetchTrafficData();
+    }
+
     e.preventDefault();
-    fetchTrafficData();
+
 
 });
 
 function fetchTrafficData() {
     console.log("Fetching traffic inforamtion");
-    fetch('https://opendata.si/promet/events/')
+    fetch('https://opendata.si/promet/events/?lang=en')
         .then(function (response) {
             return response.json();
         })
@@ -212,13 +218,13 @@ rate.addEventListener('change', e => (rateValue.textContent = rate.value));
 
 // Pause audio 
 pauseBtn.addEventListener("click", function (e) {
-    if (synth.speaking) {
-        synth.pause();
-        amIPaused = synth.paused;
-        console.log("Komanda pavza: " + amIPaused);
-        dashboard.style.background = '#141414';
-        speakerState = "paused"
-    }
+
+    synth.pause();
+    amIPaused = synth.paused;
+    console.log("Komanda pavza: " + amIPaused);
+    dashboard.style.background = '#141414';
+    speakerState = "paused"
+
 
     e.preventDefault();
 })
@@ -226,13 +232,13 @@ pauseBtn.addEventListener("click", function (e) {
 // Resume audio 
 resumeBtn.addEventListener("click", function (e) {
     console.log("resume: " + amIPaused);
-    if (speakerState == "paused") {
-        synth.resume();
-        speakerState == "speaking"
-        dashboard.style.background = '#141414 url(img/wave.gif)';
-        dashboard.style.backgroundRepeat = 'repeat-x';
-        dashboard.style.backgroundSize = '100% 100%';
-    }
+
+    synth.resume();
+    speakerState == "speaking"
+    dashboard.style.background = '#141414 url(img/wave.gif)';
+    dashboard.style.backgroundRepeat = 'repeat-x';
+    dashboard.style.backgroundSize = '100% 100%';
+
 
     e.preventDefault();
 })
