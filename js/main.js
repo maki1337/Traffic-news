@@ -68,16 +68,14 @@ if (isChrome) {
 // Speak
 const speak = (output, index) => {
     console.log("output: ", output);
+    console.log("speak function start: ", synth.speaking);
     speakerState = "speaking";
-    console.log("Speaker que: " + synth.pending);
-    console.log("Speaker paused: " + synth.paused);
-    console.log("Speaker speaking: " + synth.speaking);
     // Check if speaking
     if (synth.speaking) {
         console.error('Already speaking...');
         return;
     }
-    if (output.length != 0) {
+    if (!synth.speaking) {
         console.log(output.length);
         console.log("Stevilka obvestila: " + index);
         // Add background animation
@@ -124,6 +122,8 @@ const speak = (output, index) => {
 
         // Speak
         synth.speak(speakText);
+        synth.pause();
+        synth.resume();
         console.log("Speaker que: " + synth.pending);
         console.log("Speaker paused: " + synth.paused);
         console.log("Speaker speaking: " + synth.speaking);
